@@ -1,0 +1,26 @@
+<h1>Contributing</h1><p>Thanks for your interest in contributing! The advice below will help you get
+your issue fixed / pull request merged.</p>
+<p>Please file bugs and send pull requests to the
+<a href="https://github.com/mozilla/nunjucks/">GitHub repository</a> and
+<a href="https://github.com/mozilla/nunjucks/issues">issue tracker</a>.</p>
+<h2>Submitting Issues</h2><p>Issues are easier to reproduce/resolve when they have:</p>
+<ul>
+<li>A pull request with a failing test demonstrating the issue</li>
+<li>A code example that produces the issue consistently</li>
+<li>A traceback (when applicable)</li>
+</ul>
+<h2>Pull Requests</h2><p>When creating a pull request:</p>
+<ul>
+<li>Write tests (see below).</li>
+<li>Note user-facing changes in the <code>CHANGELOG.md</code> file.</li>
+<li>Update the documentation (in <code>docs/</code>) as needed.</li>
+</ul>
+<h2>Testing</h2><p>Please add tests for any changes you submit. The tests should fail before your
+code changes, and pass with your changes. Existing tests should not break. Test
+coverage (output at the end of every test run) should never decrease after your
+changes.</p>
+<p>To install all the requirements for running the tests:</p>
+<pre><code>npm install
+</code></pre><p>To run the tests:</p>
+<pre><code>npm test
+</code></pre>

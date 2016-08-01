@@ -1,0 +1,14 @@
+{
+  "name": "todomvc-app-css",
+  "homepage": "https://github.com/howardroark/todomvc-app-css",
+  "version": "3.0.0",
+  "_release": "3.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.0.0",
+    "commit": "ce5fc6fef2f48e2645c268ca4465aaffecb356af"
+  },
+  "_source": "git://github.com/howardroark/todomvc-app-css.git",
+  "_target": "*",
+  "_originalSource": "howardroark/todomvc-app-css"
+}

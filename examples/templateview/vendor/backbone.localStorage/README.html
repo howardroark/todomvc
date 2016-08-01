@@ -1,0 +1,85 @@
+<h1>Backbone localStorage Adapter v1.1.16</h1><p><a href="http://travis-ci.org/jeromegn/Backbone.localStorage"><img src="https://secure.travis-ci.org/jeromegn/Backbone.localStorage.png?branch=master" alt="Build Status"></a></p>
+<p>Quite simply a localStorage adapter for Backbone. It&#39;s a drop-in replacement for Backbone.Sync() to handle saving to a localStorage database.</p>
+<p><a href="https://www.gittip.com/jeromegn/"><img src="http://badgr.co/gittip/jeromegn.png" alt="Gittip"></a></p>
+<h2>Usage</h2><p>Include Backbone.localStorage after having included Backbone.js:</p>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot; src=&quot;backbone.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;backbone.localStorage.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Create your collections like so:</p>
+<pre><code class="language-javascript">window.SomeCollection = Backbone.Collection.extend({
+
+  localStorage: new Backbone.LocalStorage(&quot;SomeCollection&quot;), // Unique name within your app.
+
+  // ... everything else is normal.
+
+});
+</code></pre>
+<p>If needed, you can use the default <code>Backbone.sync</code> (instead of local storage) by passing the <code>ajaxSync</code> option flag to any Backbone AJAX function, for example:</p>
+<pre><code class="language-javascript">var myModel = new SomeModel();
+myModel.fetch({ ajaxSync: true });
+myModel.save({ new: &quot;value&quot; }, { ajaxSync: true });
+</code></pre>
+<h3>RequireJS</h3><p>Include <a href="http://requirejs.org">RequireJS</a>:</p>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot; src=&quot;lib/require.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>RequireJS config: </p>
+<pre><code class="language-javascript">require.config({
+    paths: {
+        jquery: &quot;lib/jquery&quot;,
+        underscore: &quot;lib/underscore&quot;,
+        backbone: &quot;lib/backbone&quot;,
+        localstorage: &quot;lib/backbone.localStorage&quot;
+    }
+});
+</code></pre>
+<p>Define your collection as a module:</p>
+<pre><code class="language-javascript">define(&quot;SomeCollection&quot;, [&quot;localstorage&quot;], function() {
+    var SomeCollection = Backbone.Collection.extend({
+        localStorage: new Backbone.LocalStorage(&quot;SomeCollection&quot;) // Unique name within your app.
+    });
+
+    return SomeCollection;
+});
+</code></pre>
+<p>Require your collection:</p>
+<pre><code class="language-javascript">require([&quot;SomeCollection&quot;], function(SomeCollection) {
+  // ready to use SomeCollection
+});
+</code></pre>
+<h3>CommonJS</h3><p>If you&#39;re using <a href="https://github.com/substack/node-browserify">browserify</a>.</p>
+<p>Install using <code>npm install backbone.localstorage</code>, and require the module.</p>
+<pre><code class="language-javascript">Backbone.LocalStorage = require(&quot;backbone.localstorage&quot;);
+</code></pre>
+<p>##Support</p>
+<p>If you&#39;re having a problem with using the project, get help at CodersClan.</p>
+<p><a href="http://codersclan.net/forum/index.php?repo_id=67"><img src="http://www.codersclan.net/graphics/getSupport_blue_big.png" width="160"></a></p>
+<h2>Contributing</h2><p>You&#39;ll need node and to <code>npm install</code> before being able to run the minification script.</p>
+<ol>
+<li>Fork;</li>
+<li>Write code, with tests;</li>
+<li><code>make test</code> or <code>open spec/runner.html</code>;</li>
+<li>Create a pull request.</li>
+</ol>
+<p>Have fun!</p>
+<h2>Acknowledgments</h2><ul>
+<li><a href="https://github.com/llad">Mark Woodall</a>: initial tests (now refactored);</li>
+<li><a href="https://github.com/dwt">Martin Häcker</a>: many fixes and the test isolation.</li>
+</ul>
+<h2>License</h2><p>Licensed under MIT license</p>
+<p>Copyright (c) 2010 Jerome Gravel-Niquet</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&quot;Software&quot;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>

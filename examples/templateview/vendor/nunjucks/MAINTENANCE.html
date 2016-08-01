@@ -1,0 +1,52 @@
+<h1>Pushing a New Version</h1><p>Nunjucks attempts to adhere to semantic versioning. The API is very stable, so
+from here on out it will most likely be point releases.</p>
+<ol>
+<li><p>Do a <code>pull</code> from github to make sure you have all the latest updates.</p>
+</li>
+<li><p>View all the changes since the last version:</p>
+<pre><code>$ git log --oneline v1.2.3..master
+</code></pre></li>
+</ol>
+<p>Replace <code>v1.2.3</code> with whatever the last version was, and you&#39;ll see all the
+changes going out in this version. Ensure that all significant user-facing
+changes (new features and bugfixes) are mentioned in <code>CHANGELOG.md</code>. Change the
+&quot;master (unreleased)&quot; heading in <code>CHANGELOG.md</code> to the new version number and
+date.</p>
+<ol>
+<li><p>Update the version in <code>package.json</code>.</p>
+</li>
+<li><p>Run the command to update the ready-made files for the browser.</p>
+<pre><code>$ npm run browserfiles
+</code></pre></li>
+<li><p>Commit above changes and push to <code>master</code> (or a release branch, if using one).</p>
+</li>
+<li><p>Draft a new release on GitHub and copy the changelog to the description. The
+tag and title should both be the version, in the form <code>v2.3.0</code>. Publish the
+release.</p>
+</li>
+<li><p>Publish to npm:</p>
+<pre><code>npm publish
+</code></pre></li>
+<li><p>Make sure docs are up-to-date. You need to copy all the <code>nunjucks*.js</code> files
+in <code>browser/</code> to the docs. This is where the &quot;download&quot; link points to in
+the docs. You also need to copy the tests into the docs, for the online
+browser tests. <code>make prod</code> in the <code>docs/</code> dir will handle these tasks
+for you. Push (force push if necessary) the build out _site folder onto the
+<code>gh-pages</code> branch of the <code>nunjucks</code> repo to get it live. One way to do that
+is the following commands. These commands presume that you have another
+nunjucks git clone inside the (git-ignored) <code>docs/_site</code> directory, checked
+out to the <code>gh-pages</code> branch (and tracking <code>origin/gh-pages</code>). (To set that
+up the first time, <code>cd docs/_site</code>, <code>rm -rf *</code>, <code>git clone
+git@github.com:mozilla/nunjucks.git .</code>, and <code>git checkout gh-pages</code>).</p>
+<pre><code>cd docs &amp;&amp; make prod
+cd files
+python -m SimpleHTTPServer
+# load http://localhost:8000/tests/browser/ and verify tests pass in browser
+cd ../_site &amp;&amp; git add -A &amp;&amp; git commit &amp;&amp; git push
+</code></pre></li>
+<li><p>Add a new &quot;master (unreleased)&quot; section at the top of <code>CHANGELOG.md</code>.</p>
+</li>
+<li><p>Bump the version number in <code>package.json</code> to a development pre-release of
+the next anticipated release number (e.g. &quot;2.2.0-dev.1&quot;).</p>
+</li>
+</ol>
